@@ -1,1 +1,115 @@
 \section{Wahrscheinlichkeit}
+
+\subsection*{Definition}
+
+Ein Ereignis $E$ komme in $h$ von $n$ Fällen vor. Die Wahrscheinlichkeit $p$ für das Eintreffen des Ereignisses $E$ ist durch den Quotienten von $h$ und $n$ definiert.
+
+\begin{displaymath}
+p=P(E)=\frac{h}{n}
+\end{displaymath}
+
+Die Gegenwahrscheinlichkeit beschreibt die Wahrscheinlichkeit $q$ des Nicht-Eintreffens des Ereignisses $E$ und lässt sich aus der obigen Formel ableiten.
+
+\begin{displaymath}
+q=P(\bar{E})=\frac{n-h}{n}=1-p
+\end{displaymath}
+
+Ist es sicher dass das Ereignis $E$ eintritt, so ist $p=1$. Ist es hingegen unmöglich dass das Ereignis $E$ eintritt, so ist $p=0$.
+
+\subsection*{Beispiele}
+
+Beim Werfen einer Münze kann entweder Kopf oder Zahl geworfen werden. In diesem Fall ist $h=1$ da entweder nur Kopf oder nur Zahl geworfen werden kann. Da die Münze zwei Seiten und damit zwei Mögliche Ergebnisse liefert ist $n=2$. Die Wahrscheinlichkeit Kopf zu werfen liegt demnach bei $1/2$.
+
+\begin{displaymath}
+P(E)=\frac{1}{2}
+\end{displaymath}
+
+Auch die Wahrscheinlichkeit beim Wurf eines echten Würfels entweder eine 1 oder eine 2 zu würfeln lässt sich mit dieser Formel berechnen. Das Ereignis trifft dabei in $h=2$ von $n=6$ Fällen ein. 
+
+\begin{displaymath}
+p=P(E)=\frac{2}{6}=\frac{1}{3}
+\end{displaymath}
+
+Das Nicht-Eintreffen ist demnach $2/3$.
+
+\begin{displaymath}
+q=P(\bar{E})=\frac{4}{6}=\frac{2}{3}
+\end{displaymath}
+
+\section{Bedingte Wahrscheinlichkeit}
+
+\subsection*{Definition}
+
+Betrachtet man die beiden Ereignisse $E_1$ und $E_2$, so ist die Wahrscheinlichkeit für das Eintreten des Ereignisses $E_2$, unter der Voraussetzung dass $E_1$ bereits eingetreten ist, als bedingte Wahrscheinlichkeit $P(E_2|E_1)$ definiert. 
+
+\begin{displaymath}
+P(E_2|E_1)=\frac{P(E_1 E_2)}{P(E_1)}
+\end{displaymath}
+
+$P(E_1 E_2)$ bezeichnet dabei das Ereignis, dass sowohl $E_1$ als auch $E_2$ eintreten. 
+
+\begin{displaymath}
+P(E_1 E_2)=P(E1) \cdot P(E_2|E_1)
+\end{displaymath}
+
+Bezeichnet $P(E_1 E_2)$ hingegen das Ereignis, dass $E_1$ und $E_2$ unabhängig voneinander eintreten, so vereinfacht sich die Formel.
+
+\begin{displaymath}
+P(E_1 E_2)=P(E_1) \cdot P(E_2)
+\end{displaymath}
+
+\subsection*{Beispiel}
+
+In einer Urne sind 5 rote, 4 schwarze und 2 blaue Kugeln. Wie hoch ist die Wahrscheinlichkeit nacheinander die beiden blauen Kugeln zu ziehen, ohne dass die erste dabei zurückgelegt wird? 
+
+1. Kugel wird gezogen:
+
+\begin{displaymath}
+p_1=P(E_1)=\frac{2}{11}
+\end{displaymath}
+
+2. Kugel wird gezogen:
+
+\begin{displaymath}
+p_2=P(E_2|E_1)=\frac{1}{10}
+\end{displaymath}
+
+Die Wahrscheinlichkeit $p$ ist dabei das Produkt von $p_1$ und $p_2$.
+
+\begin{displaymath}
+p=p_1 \cdot p_2=\frac{2}{11} \cdot \frac{1}{10} = \frac{1}{55}
+\end{displaymath}
+
+Legt man hingegen nach der ersten Ziehung die Kugel wieder zurück in die Urne, ändert sich die Rechnung wie folgt.
+
+1. Kugel wird gezogen:
+
+\begin{displaymath}
+p_1=P(E_1)=\frac{2}{11}
+\end{displaymath}
+
+2. Kugel wird gezogen nachdem die 1. Kugel wieder in die Urne gelegt wurde:
+
+\begin{displaymath}
+p_2=P(E_1)=\frac{2}{11}
+\end{displaymath}
+
+Die Wahrscheinlichkeit $p$ ist dabei wieder das Produkt von $p_1$ und $p_2$.
+
+\begin{displaymath}
+p=p_1 \cdot p_2=\frac{2}{11} \cdot \frac{2}{11} = \frac{4}{121}
+\end{displaymath}
+
+\section{Kombinatorik}
+
+Manchmal möchte man herausfinden wie viele Möglichkeiten es gibt $k$ Kugeln aus einer Grundmenge von $n$ Kugeln zu entnehmen.
+
+\begin{displaymath}
+A={ n \choose k}=\frac{n(n-1)(n-2)\ldots (n-k+1)}{k!}=\frac{n!}{k!(n-k)!} 
+\end{displaymath}
+
+In folgendem Beispiel ist ein Sack von 113 Kugeln gegeben und man möchte herausfinden wie viele Möglichkeiten es gibt zwei beliebige Kugeln zu entnehmen.
+
+\begin{displaymath}
+{ n \choose k}=\frac{113\cdot 112}{2!}=6328
+\end{displaymath}
