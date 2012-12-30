@@ -23,3 +23,9 @@
 *.pdf
 *.synctex*
 *.synctex.gz
+*.swp
+*.swo
+*.fdb_latexmk
+*.fls
+*.sta
+/revision.tex
