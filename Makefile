@@ -22,7 +22,7 @@ clean:
 	rm -f revision.tex
 
 refresh:
-	-killall -HUP mupdf 2> /dev/null
+	-killall -HUP mupdf ||  echo "Mupdf not started, no refreshing."
 
 mupdf:
 	mupdf $(TARGET) &
