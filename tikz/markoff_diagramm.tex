@@ -1,0 +1,17 @@
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+                    distance=2.8cm,semithick]
+
+	\node[state] (A)                    {$A$};
+	\node[state] (B) [below left of=A]  {$B$};
+	\node[state] (C) [below right of=A] {$C$};
+
+	\path (A) edge [bend right] node [above left]  {$\sfrac{4}{5}$}  (B)
+	          edge [bend left]  node               {$\sfrac{1}{5}$}  (C)
+	      (B) edge [bend right] node [below right] {$\sfrac{1}{2}$}  (A)
+	          edge [loop below] node               {$\sfrac{1}{2}$}  (B)
+	      (C) edge [bend left]  node               {$\sfrac{1}{2}$}  (A)
+	          edge [bend left]  node               {$\sfrac{2}{5}$}  (B)
+	          edge [loop below] node               {$\sfrac{1}{10}$} (C)
+	;
+
+\end{tikzpicture}

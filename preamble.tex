@@ -19,6 +19,8 @@
 \usepackage{siunitx} % SI unit macros and "S" column type
 \usepackage{hyperref} % Hyperlinks
 \usepackage{fancyhdr} % Fancy headers
+\usepackage{xfrac} % Split level fractions
+\usepackage{multirow} % Span multiple rows in a table
 
 % Font configuration
 
@@ -27,12 +29,21 @@
 \usepackage[babel=true]{microtype} % Micro-typographic optimizations
 \addtokomafont{disposition}{\rmfamily} % Set palatino as heading font
 
-% Additional math operators
-
-\DeclareMathOperator{\lb}{lb} % Binary logarithm
-
 % TikZ / PGF
 
 \usepackage{pgf} % Backend for TikZ
 \usepackage{tikz} % TikZ vector graphics
-\usetikzlibrary{arrows}
+\usetikzlibrary{arrows,automata}
+
+% Additional math operators
+
+\DeclareMathOperator{\lb}{lb} % Binary logarithm
+
+% Configure table spacing
+
+\renewcommand{\arraystretch}{1.3}
+
+% Page break before each section
+
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}

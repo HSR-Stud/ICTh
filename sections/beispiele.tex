@@ -1,0 +1,89 @@
+\section{Beispiele}
+
+In diesem Abschnitt werden verschiedene Berechnungsbeispiele aufgeführt.
+
+
+\subsection{Berechnung der Entropie einer Quelle mit Gedächtnis}
+
+Eine Quelle mit GEdächtnis kann mit einem Markoff-Diagramm dargestellt werden.
+Diese Überlegungen und Berechnungen gelten auch für das Kanalmodell.
+
+Bei Quellen mit Gedächtnis können wir ahnen, welches Zeichen als nächstes kommt,
+daher sinkt der Informationsgehalt und die Redundanz nimmt zu.
+
+\input{tikz/markoff_diagramm}
+
+
+\subsubsection*{1. Aufstellen der Matrix für die bedingte Wahrscheinlichkeit}
+
+Die Werte können aus dem Diagramm ausgelesen werden.
+
+\begin{tabular}[H]{|c|c|c|c|c|}
+	\hline
+	$p(y|x)$ & $Y=$ & $A$ & $B$ & $C$ \\
+	\hline
+	\multirow{3}{*}{$X=$} & $A$ geht über in & $0$ & $\frac{4}{5}$ & $\frac{1}{5}$ \\
+	\cline{2-5}
+	& $B$ geht über in & $\frac{1}{2}$ & $\frac{1}{2}$ & $0$ \\
+	\cline{2-5}
+	& $C$ geht über in & $\frac{1}{2}$ & $\frac{2}{5}$ & $\frac{1}{10}$ \\
+	\hline
+\end{tabular}
+
+
+\subsubsection*{2. Berechnen der Wahrscheinlichkeit der einzelnen Zeichen}
+
+Aufstellen der vier Gleichungen:
+
+% TODO unterschied P vs p?
+\begin{equation*}
+	\begin{array}{rclclcl}
+		1    &=& p(A)                   &+& p(B)                   &+& p(C) \\
+		p(A) &=& p(A) \cdot 0           &+& p(B) \cdot \frac{1}{2} &+& p(C) \cdot \frac{1}{2} \\
+		p(B) &=& p(A) \cdot \frac{4}{5} &+& p(B) \cdot \frac{1}{2} &+& p(C) \cdot \frac{2}{5} \\
+		p(C) &=& p(A) \cdot \frac{1}{5} &+& p(B) \cdot 0           &+& p(C) \cdot \frac{1}{10}
+	\end{array}
+\end{equation*}
+
+Daraus ergibt sich:
+\begin{align*}
+	p(A) &= \frac{1}{3} \\
+	p(B) &= \frac{16}{27} \\
+	p(C) &= \frac{2}{27}
+\end{align*}
+
+
+\subsubsection*{3. Zusammenfassen}
+
+% TODO hä???
+\begin{tabular}[H]{|c|c|c|c|c|}
+	\hline
+	$p(y|x)$ & $Y=$ & $A$ & $B$ & $C$ \\
+	\hline
+	\multirow{3}{*}{$X=$} & $A = \frac{1}{3}$ & $0 = 0$ & $\frac{4}{5} = \frac{4}{15}$ & $\frac{1}{5} = \frac{1}{15}$ \\
+	\cline{2-5}
+	& $B = \frac{16}{27}$ & $\frac{1}{2} = \frac{8}{27}$ & $\frac{1}{2} = \frac{8}{27}$ & $0 = 0$ \\
+	\cline{2-5}
+	& $C = \frac{2}{27}$ & $\frac{1}{2} = \frac{1}{27}$ & $\frac{2}{5} = \frac{4}{135}$ & $\frac{1}{10} = \frac{1}{135}$ \\
+	\hline
+\end{tabular}
+
+
+\subsubsection*{4. Informationsgehalt der Zeichen}
+
+Der Informationsgehalt berechnet sich wie folgt:
+\[
+	I(X_k) = \lb\left(\frac{1}{p(x_k)}\right)
+\]
+
+Daraus ergibt sich:
+{%
+	\renewcommand{\arraystretch}{2}
+	\begin{equation*}
+		\begin{array}{rclcl}
+			I(A) &=& \lb\left(\frac{1}{\sfrac{1}{3}}\right) &=& 1.585 \, \textrm{Bit} \\
+			I(B) &=& \lb\left(\frac{1}{\sfrac{16}{27}}\right) &=& 0.755 \, \textrm{Bit} \\
+			I(C) &=& \lb\left(\frac{1}{\sfrac{2}{27}}\right) &=& 3.755 \, \textrm{Bit}
+		\end{array}
+	\end{equation*}
+}%
