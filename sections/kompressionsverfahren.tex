@@ -2,4 +2,31 @@
 
 \subsection{Huffman}
 
+TODO
+
 \subsection{Lempel-Ziv}
+
+Funktionsweise:
+
+\begin{enumerate}
+	\item Die zu codierende Zeichenfolge wird in Teilfolgen aufgeteilt, welche
+		alle verschieden sind.
+	\item Bei den zu übertragenden Zeichen werden die Position im Baum und evtl.
+		neue Zeichenfolgen angegeben. Beispiel: $(3,1)$ $\rightarrow$ Position 3 im
+		Baum, neues Zeichen 1.
+	\item Es wird ein Phrasenspeicher (Decoderbaum) aufgebaut, welcher bereits
+		übertragene Zeichenfolgen speichert.
+\end{enumerate}
+
+Voraussetzung für gute Kompression ist, dass die Zeichenfolge viele
+Regelmässigkeiten besitzt. Ansonsten kann es sein, dass der ``komprimierte
+Code'' grösser als der Ursprüngliche ist.
+
+Probleme:
+\begin{itemize}
+	\item Effizientes Suchen und Einfügen in den Baum
+	\item Grösse des Baumes -- der Baum kann nur bis zu einer gewissen Grösse wachsen
+\end{itemize}
+
+Siehe \autoref{example:lempel-ziv} auf Seite~\pageref{example:lempel-ziv}
+für ein Anwendungsbeispiel.

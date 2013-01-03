@@ -87,3 +87,56 @@ Daraus ergibt sich:
 		\end{array}
 	\end{equation*}
 }%
+
+
+\subsection{Lempel-Ziv Kompression}
+\label{example:lempel-ziv}
+
+Zu codierende Zeichenfolge: $00101110010110$
+
+\subsubsection*{1. Aufteilen in eindeutige Zeichenfolgen}
+
+\[
+	0|01|011|1|00|10|11|0
+\]
+
+\subsubsection*{2. Übertragen}
+
+\begin{minipage}{.4\linewidth}
+	\begin{tabular}[H]{|l|l|}
+		\hline
+		0 & (0,0) \\
+		\hline
+		01 & (1,1) \\
+		\hline
+		011 & (2,1) \\
+		\hline
+		1 & (0,1) \\
+		\hline
+		00 & (1,0) \\
+		\hline
+		10 & (4,0) \\
+		\hline
+		11 & (4,1) \\
+		\hline
+		0 & (1) \\
+		\hline
+	\end{tabular}
+\end{minipage}
+\begin{minipage}{.6\linewidth}
+	\input{tikz/lempel_ziv}
+\end{minipage}
+
+\subsubsection*{3. Decodieren}
+
+Bei jedem ankommenden Zeichenpaar wird der Baum bis zum entsprechenden Knoten
+verfolgt und die Bits auf dem Weg ausgegeben. Danach wird bei Bedarf ein neuer
+Knoten in den Baum eingefügt.
+
+Beispiel (2,0):
+\begin{itemize}
+	\item Verfolgen des Baumes bis Knoten 2
+	\item Ausgabe der Bits: $01$
+	\item Anfügen eines neuen Knotens und Ausgabe des Weges dorthin: $0$
+	\item Gesamte Bitfolge ist: $010$
+\end{itemize}
