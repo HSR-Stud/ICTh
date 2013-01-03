@@ -16,9 +16,46 @@ Irrelevanz. Man unterscheidet drei Varianten:
 		- Streamingdaten
 \end{itemize}
 
+
 \subsection{Huffman}
 
-TODO
+Das Prinzip hinter der Huffman-Codierung ist es, häufige Wörter mit möglichst
+kurzen Codeworten zu codieren. Ein Beispiel dafür ist das Morse-Alphabet,
+welches den häufig vorkommenden Buchstaben \textit{E} mit dem Zeichen \textit{.}
+und den selten vorkommenden Buchstaben \textit{X} mit den vier Zeichen
+\textit{-..-} codiert. (Der Morsecode besitzt jedoch keine Präfixeigenschaft,
+siehe \autoref{sec:praefixeigenschaft} auf
+Seite~\pageref{sec:praefixeigenschaft}.)
+
+Die Huffman Codierung läuft folgendermassen ab:
+
+\begin{itemize}
+	\item \textit{Ordnen} -- Ordne die Zeichen nach fallenden
+		Wahrscheinlichkeiten. Erstelle einen alleinstehenden Baum-Knoten für jedes
+		Zeichen. Schreibe die Auftrittswahrscheinlichkeit an die Kante.
+	\item \textit{Reduzieren} -- Kombiniere* die beiden Bäume mit den kleinsten
+		Wahrscheinlichkeiten, indem sie Teilbäume einer neuen Wurzel werden.
+		Schreibe die kombinierte Wahrscheinlichkeit an die Kante der neuen Wurzel.
+		Ordne die Liste neu wie in Schritt 1 und fahre fort, bis alle Zeichen
+		zusammengefasst sind.
+	\item \textit{Codieren} -- Beginne bei der letzten Zusammenfassung. Ordne der
+		Kante zum ersten Unterknoten eine $0$ und der Kante zum zweiten Unterknoten
+		eine $1$ zu.
+
+		Fahre sinngemäss fort, bis alle Zeichen codiert sind.
+\end{itemize}
+
+\textit{* Im Falle mehrerer Zeichen mit derselben Wahrscheinlichkeit werden die
+Zeichen kombiniert, die am wenigsten bereits zusammengefasste Zeichen
+beinhalten. Damit erreicht man bei gleicher mittlerer Codewortlänge eine in
+der Übertragungstechnik günstigere, weil gleichmässigere Verteilung der
+Codewortlängen.}
+
+Für diskrete gedächtnislose Quellen liefert die Huffman Codierung mit variabler
+Wortlänge immer einen optimalen Präfixcode $\rightarrow$ sie liefert die
+kleinste mittlere Codewortlänge. Zudem ist ein solcher Code ohne Komma-Zeichen
+zur Trennung der Codewörter eindeutig decodierbar.
+
 
 \subsection{Lempel-Ziv}
 
