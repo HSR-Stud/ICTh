@@ -17,9 +17,9 @@
 \usepackage{float} % Use H placement specifier for floats
 \usepackage{longtable} % Tables across several pages
 \usepackage{hyperref} % Hyperlinks
-\usepackage{fancyhdr} % Fancy headers
 \usepackage{xfrac} % Split level fractions
 \usepackage{multirow} % Span multiple rows in a table
+\usepackage{ccicons}
 
 % Font configuration
 
@@ -46,3 +46,22 @@
 
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
+
+% License macro
+
+\gdef\ccLogos{\ccby}
+\newcommand{\license}[1]{\renewcommand{\ccLogos}{#1}}
+
+% Settings and macros for titlepage
+
+\input{texutils/authorsfromfile.tex}
+\input{revision.tex}
+
+\newcommand{\moduleName}[1]{\gdef\modname{#1}}
+\newcommand{\moduleAbbr}[1]{\gdef\modabbr{#1}}
+\newcommand{\modurl}[1]{https://github.com/HSR-Stud/\modabbr/}
+
+\title{\modabbr\ Zusammenfassung}
+\subject{\modname}
+\authorsfromfile{CONTRIBUTORS.txt}{\url{\modurl}}
+\date{Stand: \revisiondate}
