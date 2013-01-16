@@ -19,7 +19,6 @@
 \usepackage{hyperref} % Hyperlinks
 \usepackage{xfrac} % Split level fractions
 \usepackage{multirow} % Span multiple rows in a table
-\usepackage{ccicons}
 
 % Font configuration
 
@@ -47,15 +46,20 @@
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
 
+% Creative Commons icons
+
+\graphicspath{{texutils/ccicons/}}
+\input{texutils/ccicons.tex}
+
 % License macro
 
-\gdef\ccLogos{\ccby}
+\gdef\ccLogos{\ccLogo\;\ccShareAlike}
 \newcommand{\license}[1]{\renewcommand{\ccLogos}{#1}}
 
 % Settings and macros for titlepage
 
-\input{texutils/authorsfromfile.tex}
-\input{revision.tex}
+\input{texutils/authorsfromfile.tex} % Load authors from CONTRIBUTORS.txt
+\input{revision.tex} % Show last git change date
 
 \newcommand{\moduleName}[1]{\gdef\modname{#1}}
 \newcommand{\moduleAbbr}[1]{\gdef\modabbr{#1}}
