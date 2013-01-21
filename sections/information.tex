@@ -2,11 +2,18 @@
 
 \subsection{Information}
  
-Über einen Kanal werden Zeichen von der Quelle zur Senke geschickt. Dabei muss die Senke über den gleichen Zeichenvorrat verfügen wie die Quelle, da sonst keine Interpretation möglich ist. Ein unbekanntes Zeichen ist irrelevant. In der Regel produziert die Quelle einzelne Zeichen unterschiedlich oft, was bedeutet dass die Auftrittswahrscheinlichkeit der Zeichen unterschiedlich ist. 
+Über einen Kanal werden Zeichen von der Quelle zur Senke geschickt. Dabei muss
+die Senke über den gleichen Zeichenvorrat verfügen wie die Quelle, da sonst
+keine Interpretation möglich ist. Ein unbekanntes Zeichen ist irrelevant. In der
+Regel produziert die Quelle einzelne Zeichen unterschiedlich oft, was bedeutet
+dass die Auftrittswahrscheinlichkeit der Zeichen unterschiedlich ist. 
 
-Kommt nun ein einziges Zeichen öfters vor, so ist dieses Redundant, es liefert somit keine neue Information. Tritt ein Zeichen dagegen nur sehr selten auf, ist der Informationsgehalt dieses Zeichens sehr hoch. 
+Kommt nun ein einziges Zeichen öfters vor, so ist dieses Redundant, es liefert
+somit keine neue Information. Tritt ein Zeichen dagegen nur sehr selten auf, ist
+der Informationsgehalt dieses Zeichens sehr hoch. 
 
-Der Informationsgehalt $I$ eines Zeichens ist der Kehrwert des Zweierlogarithmus der Wahrscheinlichkeit $p$ und wird in Bit angegeben.
+Der Informationsgehalt $I$ eines Zeichens ist der Kehrwert des Zweierlogarithmus
+der Wahrscheinlichkeit $p$ und wird in Bit angegeben.
 
 \begin{displaymath}
 I(p)=\frac{1}{\log_2(p)}
@@ -15,15 +22,20 @@ I(p)=\frac{1}{\log_2(p)}
 
 \subsection{Entscheidungsgehalt}
 
-Eine Elementarentscheidung ist eine zweiwertige Entscheidung, wie Ja/Nein oder 0/1 und entspricht einem Bit. Mit einer Elementarentscheidung lassen sich allerdings nur zwei Zeichen codieren. 
+Eine Elementarentscheidung ist eine zweiwertige Entscheidung, wie Ja/Nein oder
+0/1 und entspricht einem Bit. Mit einer Elementarentscheidung lassen sich
+allerdings nur zwei Zeichen codieren. 
 
-Will man $N$ Zeichen unterscheiden sind $\log_2(N)$ Bit erforderlich. Dieser Entscheidungsgehalt kann auch ungerade Werte annehmen und ist eine abstrakte Grösse.
+Will man $N$ Zeichen unterscheiden sind $\log_2(N)$ Bit erforderlich. Dieser
+Entscheidungsgehalt kann auch ungerade Werte annehmen und ist eine abstrakte
+Grösse.
 
 \begin{displaymath}
 H_0=\log_2(N)
 \end{displaymath}
 
-Der Entscheidungsfluss $H^*_0$ ist der Entscheidungsgehalt über eine bestimmte Zeit $t$, welche zur Übertragung eines Quellzeichens nötig. ist.
+Der Entscheidungsfluss $H^*_0$ ist der Entscheidungsgehalt über eine bestimmte
+Zeit $t$, welche zur Übertragung eines Quellzeichens nötig. ist.
 
 \begin{displaymath}
 H^*_0=\frac{\log_2(N)}{t}
@@ -32,9 +44,18 @@ H^*_0=\frac{\log_2(N)}{t}
 
 \subsection{Entropie}
 
-Die Entropie $H$ ist in Anlehnung an die Thermodynamik ein Mass für die Unordnung eines Systems. Werden Zeichen über einen Kanal von einer Quelle zur Senke geschickt, so entspricht die Entropie der Ungewissheit ein bestimmtes Zeichen vorherzusagen. Erzeugt die Quelle ein bestimmtes Zeichen sehr häufig, so die Ungewissheit entsprechend gering. Mit einer bestimmten Wahrscheinlichkeit lässt sich so ein Zeichen voraussagen. Ist die Häufigkeit der Zeichen jedoch ausgeglichen, so ist die Ungewissheit beziehungsweise die Entropie maximal. 
+Die Entropie $H$ ist in Anlehnung an die Thermodynamik ein Mass für die
+Unordnung eines Systems. Werden Zeichen über einen Kanal von einer Quelle zur
+Senke geschickt, so entspricht die Entropie der Ungewissheit ein bestimmtes
+Zeichen vorherzusagen. Erzeugt die Quelle ein bestimmtes Zeichen sehr häufig, so
+die Ungewissheit entsprechend gering. Mit einer bestimmten Wahrscheinlichkeit
+lässt sich so ein Zeichen voraussagen. Ist die Häufigkeit der Zeichen jedoch
+ausgeglichen, so ist die Ungewissheit beziehungsweise die Entropie maximal. 
 
-Die Entropie einer diskreten, gedächtnislosen Quelle $X$ entspricht dabei dem durchschnittlichen Informationsgehalt der Zeichen ($x_1$, $x_2$, $x_3$, \ldots, $x_N$) entsprechend ihrer Auftrittswahrscheinlichkeiten ($p_1$, $p_2$, $p_3$, \ldots, $p_N$). 
+Die Entropie einer diskreten, gedächtnislosen Quelle $X$ entspricht dabei dem
+durchschnittlichen Informationsgehalt der Zeichen ($x_1$, $x_2$, $x_3$, \ldots,
+$x_N$) entsprechend ihrer Auftrittswahrscheinlichkeiten ($p_1$, $p_2$, $p_3$,
+\ldots, $p_N$). 
 
 \begin{align*}
 H(X)& =\sum\limits_{i=1}^N p_i \cdot I(x_i) \\
