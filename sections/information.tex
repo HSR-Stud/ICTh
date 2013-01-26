@@ -22,9 +22,11 @@ Wahrscheinlichkeit $p$ und wird in Bit angegeben.
 
 \subsection{Entscheidungsgehalt}
 
-Eine Elementarentscheidung ist eine zweiwertige Entscheidung, wie Ja/Nein oder
-0/1 und entspricht einem Bit. Mit einer Elementarentscheidung lassen sich
-allerdings nur zwei Zeichen codieren. 
+Der \textbf{Entscheidungsgehalt} entspricht der Anzahl Elementarentscheidungen.
+
+Eine \textbf{Elementarentscheidung} ist eine zweiwertige Entscheidung, wie
+Ja/Nein oder 0/1 und entspricht einem Bit. Mit einer Elementarentscheidung
+lassen sich allerdings nur zwei Zeichen codieren. 
 
 Will man $N$ Zeichen unterscheiden sind $\log_2(N)$ Bit erforderlich. Dieser
 Entscheidungsgehalt kann auch ungerade Werte annehmen und ist eine abstrakte
@@ -34,8 +36,8 @@ Grösse.
 	H_0=\log_2(N)
 \end{displaymath}
 
-Der Entscheidungsfluss $H^*_0$ ist der Entscheidungsgehalt über eine bestimmte
-Zeit $t$, welche zur Übertragung eines Quellzeichens nötig. ist.
+Der \textbf{Entscheidungsfluss} $H^*_0$ ist der Entscheidungsgehalt über eine
+bestimmte Zeit $t$, welche zur Übertragung eines Quellzeichens nötig. ist.
 
 \begin{displaymath}
 	H^*_0=\frac{\log_2(N)}{t}
@@ -44,7 +46,7 @@ Zeit $t$, welche zur Übertragung eines Quellzeichens nötig. ist.
 
 \subsection{Entropie}
 
-Die Entropie $H$ ist in Anlehnung an die Thermodynamik ein Mass für die
+Die \textbf{Entropie} $H$ ist in Anlehnung an die Thermodynamik ein Mass für die
 Unordnung eines Systems. Werden Zeichen über einen Kanal von einer Quelle zur
 Senke geschickt, so entspricht die Entropie der Ungewissheit ein bestimmtes
 Zeichen vorherzusagen. Erzeugt die Quelle ein bestimmtes Zeichen sehr häufig, so
@@ -61,3 +63,45 @@ $x_N$) entsprechend ihrer Auftrittswahrscheinlichkeiten ($p_1$, $p_2$, $p_3$,
 H(X)& =\sum\limits_{i=1}^N p_i \cdot I(x_i) \\
 & =\sum\limits_{i=1}^N p_i \cdot \log_2\left(p(x_i)\right)
 \end{align*}
+
+
+\subsection{Redundanz}
+
+Die Redundanz einer Quelle ist die Differenz zwischen deren Entropie und dem
+Entscheidungsgehalt ihres Zeichenvorrats.
+
+Die \textbf{Redundanz} wird folgendermassen berechnet:
+\[
+	R = H_0 - H(X)
+\]
+Die \textbf{Relative Redundanz} einer Quelle $X$ mit Entscheidungsgehalt $H_0$
+ist:
+\[
+	r = \frac{R}{H_0} = 1 - \frac{H(X)}{H_0}
+\]
+
+
+\subsection{Quelle mit Gedächtnis}
+
+Die bisherigen Quellen arbeiten ohne Gedächtnis. Allgemein kann nicht von einer
+gedächtnislosen Quelle ausgegangen werden. Daher benötigen wir für die
+Berechnungen die Verbundentropie der Zeichen.
+
+Verbundwahrscheinlichkeit:
+\begin{align*}
+	&P(x_i, y_k) = P(x_i) \cdot P(y_k) \\
+	&P(x_i, y_l) = P(x_i) \cdot P(y_k|x_i)
+\end{align*}
+
+Verbundentropie zweier Zeichen einer gedächtnisbehafteten Quelle:
+\begin{align*}
+	&H \langle X,Y \rangle = H \langle X \rangle + H \langle Y|X \rangle \\
+	&H(X,Y) = \unaryminus \sum_X \sum_Y p(x,y) \cdot \log_2\left(p(x,y)\right)
+\end{align*}
+
+Wichtiges Merkmal: Die Mittlere Entropie einer Quelle \textbf{ohne} Gedächtnis
+ist immer \textbf{grösser oder gleich} der Entropie einer Quelle \textbf{mit}
+Gedächtnis.
+
+Bei einer Quelle mit Gedächtnis können wir Voraussagen treffen, welches Zeichen
+als nächstes kommt, daher sinkt der Informationsgehalt der Nachricht.

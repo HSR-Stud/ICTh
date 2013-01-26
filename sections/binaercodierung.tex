@@ -8,17 +8,17 @@
 Bei den diskreten Quellen werden beliebige Zeichen der Quelle auf binäre
 Codeworte ($CW$) abgebildet.
 
-Günstig ist, wenn die mittlere Codewortlänge $L$ möglichst klein ist.
+Günstig ist, wenn die mittlere Codewortlänge $\overline{n}$ möglichst klein ist.
 
 Beispiele für $CW$:
 \begin{itemize}
-	\item ASCII: Block-Code mit fester Wortgrösse ($L = 8 \: Bit$)
-	\item Morsecode: Variable Wortgrösse ($L = 1 \ldots 4 \: Bit$)
+	\item ASCII: Block-Code mit fester Wortgrösse ($n$ = 8 Bit)
+	\item Morsecode: Variable Wortgrösse ($n$ = 1\ldots 4 Bit)
 \end{itemize}
 
 Mittlere Codewortlänge:
 \[
-	L = \sum_{i=1}^n p(x_i) \cdot L(x_i) \left[\frac{Bit}{Zeichen}\right]
+	\overline{n} = \sum_{i=1}^N p_i \cdot n_i~\left[\frac{\textrm{Bit}}{\textrm{Zeichen}}\right]
 \]
 
 
@@ -62,28 +62,3 @@ kleiner oder gleich gross wie die mittlere Codewortlänge $L$.
 	}
 	\caption{Beispielcode mit Präfixeigenschaft}
 \end{figure}
-
-
-\subsection{Quelle mit Gedächtnis}
-
-Die bisherigen Quellen arbeiten ohne Gedächtnis. Allgemein kann nicht von einer
-gedächtnislosen Quelle ausgegangen werden. Daher benötigen wir für die
-Berechnungen die Verbundentropie der Zeichen.
-
-Verbundwahrscheinlichkeit:
-\begin{align*}
-	&P(x_i, y_k) = P(x_i) \cdot P(y_k) \\
-	&P(x_i, y_l) = P(x_i) \cdot P(y_k|x_i)
-\end{align*}
-
-Verbundentropie zweier Zeichen einer gedächtnisbehafteten Quelle:
-\[
-	H \langle X,Y \rangle = H \langle X \rangle + H \langle Y|X \rangle
-\]
-
-Wichtiges Merkmal: Die Mittlere Entropie einer Quelle \textbf{ohne} Gedächtnis
-ist immer \textbf{grösser oder gleich} der Entropie einer Quelle \textbf{mit}
-Gedächtnis.
-
-Bei einer Quelle mit Gedächtnis können wir Voraussagen treffen, welches Zeichen
-als nächstes kommt, daher sinkt der Informationsgehalt der Nachricht.
