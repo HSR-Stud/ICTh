@@ -29,17 +29,19 @@
 
 % Math stuff configuration
 
-\numberwithin{equation}{subsection}
+\numberwithin{equation}{subsection} % Numer equations with triples
+\setcounter{MaxMatrixCols}{20} % Allow large matrices
 
 % Useful macros
 
 \newcommand{\uminus}{\scalebox{0.75}[1.0]{\( - \)}}
+\newcommand{\mtx}[1]{\ensuremath{\mathbf{#1}}}
 
 % TikZ / PGF
 
 \usepackage{pgf} % Backend for TikZ
 \usepackage{tikz} % TikZ vector graphics
-\usetikzlibrary{arrows,automata}
+\usetikzlibrary{arrows,automata,matrix,decorations.pathreplacing}
 
 % Configure table spacing
 

@@ -1,0 +1,13 @@
+\begin{tikzpicture}[decoration=brace]
+	\matrix (m) [matrix of math nodes,left delimiter=(,right delimiter=)] {
+		1 & 0 & 0 & 0 & \, & 1 & 0 & 0 & 1 & 0 & 1 & \, & 1 & 0 & 1 & 1 & \, & 1 \\
+		0 & 1 & 0 & 0 & \, & 1 & 1 & 0 & 0 & 1 & 0 & \, & 1 & 1 & 0 & 1 & \, & 1 \\
+		0 & 0 & 1 & 0 & \, & 0 & 1 & 1 & 1 & 0 & 0 & \, & 1 & 1 & 1 & 0 & \, & 1 \\
+		0 & 0 & 0 & 1 & \, & 0 & 0 & 1 & 0 & 1 & 1 & \, & 0 & 1 & 1 & 1 & \, & 1 \\
+	};
+	\draw[decorate,transform canvas={yshift=-0.5em},thick] (m-4-4.south east) -- node[below=2pt] {$\mtx{I}_4$} (m-4-1.south west);
+	\draw[decorate,transform canvas={yshift=-0.5em},thick] (m-4-18.south east) -- node[below=2pt] {$\mtx{P}_{4x11}$} (m-4-6.south west);
+	\draw[decorate,transform canvas={yshift=0.5em},thick] (m-1-6.north west) -- node[above=2pt,font=\small] {$w_H{=}2$} (m-1-11.north east);
+	\draw[decorate,transform canvas={yshift=0.5em},thick] (m-1-13.north west) -- node[above=2pt,font=\small] {$w_H{=}3$} (m-1-16.north east);
+	\draw[decorate,transform canvas={yshift=0.5em},thick] (m-1-18.north west) -- node[above=2pt,font=\small] {$w_H{=}4$} (m-1-18.north east);
+\end{tikzpicture}

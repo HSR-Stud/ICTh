@@ -1,0 +1,17 @@
+\begin{tikzpicture}[decoration=brace]
+	\matrix (m) [matrix of math nodes,left delimiter=(,right delimiter=)] {
+		1 & 1 & 0 & 0 & \, & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 1 & 1 & 0 & \, & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 0 & 1 & 1 & \, & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 0 & \, & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		0 & 1 & 0 & 1 & \, & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+		1 & 0 & 0 & 1 & \, & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+		1 & 1 & 1 & 0 & \, & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+		0 & 1 & 1 & 1 & \, & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+		1 & 0 & 1 & 1 & \, & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+		1 & 1 & 0 & 1 & \, & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+		1 & 1 & 1 & 1 & \, & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+	};
+	\draw[decorate,transform canvas={yshift=-0.5em},thick] (m-11-4.south east) -- node[below=2pt] {$\mtx{P}_{11x4}$} (m-11-1.south west);
+	\draw[decorate,transform canvas={yshift=-0.5em},thick] (m-11-16.south east) -- node[below=2pt] {$\mtx{I}_11$} (m-11-6.south west);
+\end{tikzpicture}

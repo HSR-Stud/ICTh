@@ -72,15 +72,63 @@ der \textbf{Rückwärtskorrektur} wird bei Fehlern die Nachricht erneut
 angefordert.
 
 
-\subsection{Blockcodes}
+\subsection{Lineare Blockcodes}
 
-TODO fertigschreiben
+Bei den Linearen Blockcodes werden Nachrichten in feste Blockgrössen $u$
+aufgeteilt. Durch die Codierung wird jedem Block ein eindeutiges Codewort der
+Länge $n$ zugewiesen.
+Beispiel:
+\[
+	1010 \rightarrow 0011010
+\]
+Ein $(n,k)$-Blockcode bildet die $2^k$ möglichen Nachrichtenwörter bijektiv auf
+$2^k$ $n$dimensionale Codewörter ab. Statt der $k$ Bits des Nachrichtenwortes
+werden die $n$ Bits des Codewortes übertragen. Man spricht von einer Redundanten
+Codierung mit der \textbf{Coderate} $R$:
+\[
+	R = \frac{k}{n}
+\]
+In einem \textbf{Systematischen Code} kann die Nachricht direkt aus dem Codewort
+abgelesen werden.
 
-\begin{align*}
-	m &= \textrm{Nachrichtenstellen} \\
-	k &= \textrm{Kontrollstellen} \\
-	n &= \textrm{Codewortstellen} \\
-	\\
-	n &= k + m \\
-	n(?) &= 2^k - 1
-\end{align*}
+\subsubsection{Hamming-Code}
+
+Für jede natürliche Zahl $m \ge 3$ existiert ein $(n,k)$-Hamming-Code mit folgenden
+fünf Eigenschaften:
+
+\begin{center}
+\begin{tabular}[H]{ll}
+	\hline
+	Codewortlänge & $n = 2^m - 1$ \\
+	Nachrichtenstellen & $k = 2^m - 1 - m$ \\
+	Kontrollstellen & $m = n - k$ \\
+	Fehlerkorrekturvermögen & $t = 1, d_{min} = 3$ \\
+	Perfekter Code & ja \\
+	\hline
+\end{tabular}
+\end{center}
+
+Die Konstruktion der Hamming-Codes erfolgt anhand der Prüfmatrix. Folgende Regel
+liefern die Konstruktionsvorschrift:
+\begin{itemize}
+	\item Alle Spalten der Prüfmatrix müssen verschieden sein, damit Einzelfehler
+		eindeutig erkannt werden können.
+	\item Jede Zeile der Generatormatrix $\mtx{G}$ muss mindestens drei mal eine 1
+		enthalten, um die minimale Hamming-Distanz $d_{min} = 3$ zu erfüllen. Daraus
+		folgt, dass jede Zeile der Matrix $\mtx{P}$ (Prüfteil) mindestens zwei mal
+		eine 1 enthalten muss. Die dritte 1 liefert die Einheitsmatrix $\mtx{I}$.
+		Für die transponierte Matrix $\mtx{P}^T$ gilt entsprechend, dass jede Spalte
+		mindestens zwei mal die 1 enthalten muss.
+	\item Die Spalten der transponierten Matrix $\mtx{P}^T$ werden durch alle
+		$m$-Tupel mit Hamming-Gewicht $w_H \ge 2$ gebildet.
+\end{itemize}
+
+\textbf{Beispiel} anhand des $(15,11)$-Hamming-Codes:
+
+Prüfmatrix $\mtx{H}_{4x15}$:
+
+\input{tikz/pruefmatrix}
+
+Generatormatrix $\mtx{G}_{11x15}$:
+
+\input{tikz/generatormatrix}
