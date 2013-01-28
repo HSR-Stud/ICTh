@@ -1,116 +1,53 @@
 \section{Verschlüsselungsverfahren}
+
 \subsection{RSA}
 
-Um eine Nachricht zu verschlüsseln benotigt man zwei grosse Primzahlen p und q.
-$p \cdot q = N$ und eine beliebige Zahl $e$ zwischen 1 und $N-1$ und teilerfremd
-zu $\Phi(N)$. Die Nachricht ist ein Zahl $M$. Um diese zu verschlüsseln rechnet
-man $M^e \bmod N = C$. $C$ ist der verschlüsselte Text. $N$ und $e$ sind der
-public key.
+RSA ist ein Public-Key-Verschlüsselungsverfahren. Mit dem öffentlichen Public
+Key werden Nachrichten für den Empfänger verschlüsselt und mit dem geheimen
+Private Key kann die Nachricht wieder entschlüsselt werden.
 
-Um die Nachricht $C$ zu entschlüsseln rechnet man $C^d \bmod N = M$. $d$ ist der
-Private Key.
-\begin{align*}
-	C^d \bmod N &= M \\
-	C^d & = M
-\end{align*}
-\begin{align*}
-	C^d \bmod N  =  (M^e)^d \bmod N = M^{ed} \bmod N
-\end{align*}
+Ein Anwendungsbeispiel findet sich im \autoref{example:rsa} auf
+Seite~\pageref{example:rsa}.
 
-Satz von Euler:
-\begin{align*}
-m^{\Phi (n)} \bmod n = 1
-\end{align*}
+\subsubsection*{Schlüsselpaar berechnen}
 
-$M^{ed}$ ist dasselbe wie $M^{ed \bmod \Phi (pq)} \bmod pq$. Wenn man $d$ so
-wählt, dass es das inverse Element von $e$ ist, dann gilt $e \cdot d \bmod
-\Phi(pq) = 1$. Damit rechnet man $M^1$ sobald man $M^e$ mit dem inversen Element
-$d$ potenziert.
-
-\textbf{Beispiel:}
-Mit zwei Primzahlen und der Zahl $e$ kann man ein Schlüsselpaar bilden. Mit dem
-Paar $(e,N)$ kann man eine Zahl verschlüsseln. Mit $(d,N)$ kann man sie
-entschlüsseln.
-\begin{description}
-\item[Gegeben:] Primzahlen $p=11$ und $q=7$ und die Zahl $e$
-\item[Gesucht: ] Schlüsselpaare für RSA
-\end{description}
-Zuerst muss $N$ berechnet werden:
-\[
-N = p*q
-\]
-\[
-77 = 11*7
-\]
-Damit hat man schon ein Teil des Schlüssels $(e,N)$. Jetzt muss man noch die
-Zahl $d$ für den zweiten Schlüssel $(d,N)$ berechnen. Für $d$ muss gelten $e*d
-mod \Phi(N) = 1$. Für die weiteren Schritte wird die Zahl $\Phi(N)$ benötigt.
-\[
-\Phi(N) = (p-1) * (q-1)
-\]
-\[
-60 = (11-1) * (7-1)
-\]
-Um die Zahl $d$ für den zweiten Schlüssel herauszufinden muss man das ggT von
-$\Phi(N)$ und $e$ berechnen. Das ist logischerweise 1. Man möchte aber nicht das
-ggT herausfinden, sondern man benötigt die Gleichungen des euklidischen
-Algorithmus. Zuerst multipliziert man $e$ damit das Produkt $\leq \Phi(N)$ ist
-und addiert die Differenz $n$
-\[
-\Phi(N) = k * e + n
-\]
-Bei der nächsten Gleichung setzt man für $\Phi(N)$ $e$ ein und für $e$ $n$.
-Irgendwann wird $n=0$ und $e=1$. Das wäre eigentlich das ggT. Das haben wir zwar
-schon vorher gewusst. Man benötigt aber die Zwischenschrite. Mit Zahlen:
-\begin{eqnarray}
-\label{eqn:inv3}
-60 & = & 8 * 7 + 4 \\
-\label{eqn:inv2}
-7 & = & 1 * 4 + 3\\
-\label{eqn:inv1}
-4 & = & 1 * 3 + 1\\
-3 & = & 3 * 1 + 0
-\end{eqnarray}
-Die letzte Gleichung braucht man eigentlich nicht. Die letzte Gleichung
-\ref{eqn:inv1} kann geschrieben werden als:
+Um eine Nachricht zu verschlüsseln benötigt man zwei grosse Primzahlen $p$ und
+$q$. Aus diesen zwei Primzahlen bildet man das Produkt $N$.
 \begin{equation}
-\label{eqn:subs}
-1 = 4 - 1*3
+	\label{eqn:rsa:N}
+	N = p \cdot q
 \end{equation}
-Gleichung \ref{eqn:inv2} kann als
-\[
-3 = 7 - 1*4
-\]
-geschrieben werden.
-Mit \ref{eqn:inv2} kann die Zahl 3 in \ref{eqn:subs} ersetzt werden.  
+Als nächstes braucht man eine beliebige Zahl $e$ (encode) kleiner als $N$ und
+teilerfremd\footnote{Zwei natürliche Zahlen sind teilerfremd oder relativ prim,
+wenn sie keine gemeinsamen Primfaktoren aufweisen.} zu $\phi(N)$. Mithilfe
+dieser Zahl wird $d$ (decode) berechnet, so dass die folgende Gleichung erfüllt
+ist:
 \begin{equation}
-1 = 4 - 1*(7-1*4)
+	\label{eqn:rsa:d}
+	e \cdot d \bmod \phi(N) = 1
 \end{equation}
-Diese Gleichung muss man so umformen, dass die Zahl 4 ein Faktor des zweiten
-Summand ist, damit man sie danach wieder substituieren kann.
-\begin{align}
-1 &= 4 - 7+4 \\
-1 &= -7 + 2*4
-\end{align}
-Die Zahl 4 substituiert mit Gleichung \ref{eqn:inv3} substituiert ergibt
+$\phi$ bezeichnet dabei die Eulersche Phi-Funktion. Sie gibt für jede natürliche
+Zahl $n$ an, wie viele positive ganze Zahlen es gibt, welche teilerfremd zu $n$
+und kleiner als $n$ sind. Die Berechnung von $\phi(n)$ ist bei einem grossen $n$
+und unbekannten Primfaktoren extrem zeitintensiv. Da in diesem Fall die zwei
+Primfaktoren $p$ und $q$ jedoch bekannt sind, kann $\phi(N)$ folgendermassen
+berechnet werden:
 \begin{equation}
-1 = -7 + 2*(60-8*7)
+	\phi(N) = (p-1)(q-1)
 \end{equation}
-Diese Gleichung muss jetzt so umformen dass man etwas in der Form
-\begin{equation*}
-1 = 60*k + 7*d
-\end{equation*}
-oder
-\begin{equation*}
-1 = \Phi*k + e*d
-\end{equation*}
-erhält. Weil damit ist die Bedingung $e*d \bmod \Phi(N) = 1$ erfüllt.
-\begin{eqnarray}
-1 & = & -7 + 2*60-16*7 \\
-1 & = & 2 * 60-16*7-7 \\
-1 & = & 2 * 60-16*7-1*7\\
-1 & = & 2 * 60-7(16+1)\\
-1 & = & 2 * 60-17*7
-\end{eqnarray}
-Wenn $d$ negativ ist muss man noch $d \bmod N$ rechnen. Also $\unaryminus 17
-\bmod 60 = 43$.  Somit ist $d = 43$
+Nun kann man \eqref{eqn:rsa:d} mithilfe des Erweiterten Euklidischen Algorithmus
+(siehe nachfolgendes Beispiel) lösen und erhält somit $(e,N)$ als \textbf{Public
+Key} und $(d,N)$ als \textbf{Private Key}. Die restlichen Zwischenresultate
+werden ab nun nicht mehr benötigt.
+
+\subsubsection*{Ver- und Entschlüsselung}
+
+Eine Nachricht $N$ kann mit dem Public Key folgendermassen verschlüsselt werden:
+\begin{equation}
+	M^e \bmod N = C
+\end{equation}
+Um die verschlüsselte Nachricht $C$ zu entschlüsseln, wird der Private Key
+benutzt:
+\begin{equation}
+	C^d \bmod N = M
+\end{equation}
