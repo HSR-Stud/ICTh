@@ -145,89 +145,84 @@ Beispiel (2,0):
 \subsection{RSA}
 \label{example:rsa}
 
-Mit zwei Primzahlen und der Zahl $e$ kann man ein Schlüsselpaar bilden. Mit dem
-Paar $(e,N)$ kann man eine Zahl verschlüsseln. Mit $(d,N)$ kann man sie
-entschlüsseln.
 \begin{description}
-\item[Gegeben:] Primzahlen $p=11$ und $q=7$ und die Zahl $e$
-\item[Gesucht: ] Schlüsselpaare für RSA
+\item[Gegeben:] Primzahlen $p=11$ und $q=7$.
+\item[Gesucht:] Schlüsselpaare $(e,N)$ und $(d,N)$.
 \end{description}
-Zuerst muss $N$ berechnet werden:
+
+Zuerst müssen $N$ und $\phi(N)$ berechnet werden:
+\begin{align*}
+	& N = p \cdot q \Rightarrow 11 \cdot 7 = 77 \\
+	& \phi(N) = (p-1) \cdot (q-1) \Rightarrow 10 \cdot 6 = 60
+\end{align*}
+Nun wählt man ein $e$ kleiner als $N$ und teilerfremd zu $\phi(N)$.
 \[
-N = p*q
+	e = 7
 \]
+Damit hat man schon den Public Key $(e,N)$. Jetzt muss man noch die Zahl $d$ für
+den Private Key $(d,N)$ berechnen. Für $d$ muss gelten:
 \[
-77 = 11*7
+	e \cdot d \bmod \phi(N) = 1
 \]
-Damit hat man schon ein Teil des Schlüssels $(e,N)$. Jetzt muss man noch die
-Zahl $d$ für den zweiten Schlüssel $(d,N)$ berechnen. Für $d$ muss gelten $e*d
-mod \phi(N) = 1$. Für die weiteren Schritte wird die Zahl $\phi(N)$ benötigt.
+Diese Gleichung löst man mit dem Erweiterten Euklidischen Algorithmus. Zuerst
+multipliziert man $e$ so häufig dass das Produkt gerade noch $\leq \phi(N)$ ist
+und addiert die Differenz $n$.
 \[
-\phi(N) = (p-1) * (q-1)
+\phi(N) = k \cdot e + n
 \]
-\[
-60 = (11-1) * (7-1)
-\]
-Um die Zahl $d$ für den zweiten Schlüssel herauszufinden muss man das ggT von
-$\phi(N)$ und $e$ berechnen. Das ist logischerweise 1. Man möchte aber nicht das
-ggT herausfinden, sondern man benötigt die Gleichungen des euklidischen
-Algorithmus. Zuerst multipliziert man $e$ damit das Produkt $\leq \phi(N)$ ist
-und addiert die Differenz $n$
-\[
-\phi(N) = k * e + n
-\]
-Bei der nächsten Gleichung setzt man für $\phi(N)$ $e$ ein und für $e$ $n$.
-Irgendwann wird $n=0$ und $e=1$. Das wäre eigentlich das ggT. Das haben wir zwar
-schon vorher gewusst. Man benötigt aber die Zwischenschrite. Mit Zahlen:
-\begin{eqnarray}
-\label{eqn:inv3}
-60 & = & 8 * 7 + 4 \\
-\label{eqn:inv2}
-7 & = & 1 * 4 + 3\\
-\label{eqn:inv1}
-4 & = & 1 * 3 + 1\\
-3 & = & 3 * 1 + 0
-\end{eqnarray}
-Die letzte Gleichung braucht man eigentlich nicht. Die letzte Gleichung
-\ref{eqn:inv1} kann geschrieben werden als:
+Bei der nächsten Gleichung setzt man jeweils für $\phi(N)$ $e$ ein und für $e$
+$n$. Irgendwann wird $n=0$ und $e=1$. Mit Zahlen:
+\begin{align}
+	60 & = 8 \cdot 7 + 4 \label{eqn:rsa:ex1} \\
+	7 & = 1 \cdot 4 + 3 \label{eqn:rsa:ex2} \\
+	4 & = 1 \cdot 3 + 1 \label{eqn:rsa:ex3} \\
+	3 & = 3 \cdot 1 + 0 \label{eqn:rsa:ex4}
+\end{align}
+Die letzte Gleichung benötigt man eigentlich nicht. Gleichung \ref{eqn:rsa:ex3}
+kann man nun folgendermassen umschreiben:
 \begin{equation}
-\label{eqn:subs}
-1 = 4 - 1*3
+\label{eqn:rsa:subs1}
+	1 = 4 - 1 \cdot 3
 \end{equation}
-Gleichung \ref{eqn:inv2} kann als
+Gleichung \ref{eqn:rsa:ex2} kann als
 \[
-3 = 7 - 1*4
+	3 = 7 - 1 \cdot 4
 \]
-geschrieben werden.
-Mit \ref{eqn:inv2} kann die Zahl 3 in \ref{eqn:subs} ersetzt werden.  
+geschrieben werden. Mit \eqref{eqn:rsa:ex2} kann die Zahl 3 in
+\eqref{eqn:rsa:subs1} ersetzt werden.  
 \begin{equation}
-1 = 4 - 1*(7-1*4)
+	1 = 4 - 1 \cdot (7 - 1 \cdot 4)
 \end{equation}
 Diese Gleichung muss man so umformen, dass die Zahl 4 ein Faktor des zweiten
-Summand ist, damit man sie danach wieder substituieren kann.
+Summanden ist, damit man sie danach wieder substituieren kann.
 \begin{align}
-1 &= 4 - 7+4 \\
-1 &= -7 + 2*4
+	1 &= 4 - 7 + 4 \\
+	1 &= \uminus 7 + 2 \cdot 4 \label{eqn:rsa:subs2}
 \end{align}
-Die Zahl 4 substituiert mit Gleichung \ref{eqn:inv3} substituiert ergibt
+Nun kann man \eqref{eqn:rsa:ex1} umformen und in \eqref{eqn:rsa:subs2}
+einsetzen:
 \begin{equation}
-1 = -7 + 2*(60-8*7)
+	1 = \uminus 7 + 2 \cdot (60 - 8 \cdot 7)
 \end{equation}
-Diese Gleichung muss jetzt so umformen dass man etwas in der Form
-\begin{equation*}
-1 = 60*k + 7*d
-\end{equation*}
-oder
-\begin{equation*}
-1 = \phi*k + e*d
-\end{equation*}
-erhält. Weil damit ist die Bedingung $e*d \bmod \phi(N) = 1$ erfüllt.
-\begin{eqnarray}
-1 & = & -7 + 2*60-16*7 \\
-1 & = & 2 * 60-16*7-7 \\
-1 & = & 2 * 60-16*7-1*7\\
-1 & = & 2 * 60-7(16+1)\\
-1 & = & 2 * 60-17*7
-\end{eqnarray}
-Wenn $d$ negativ ist muss man noch $d \bmod N$ rechnen. Also $\unaryminus 17
-\bmod 60 = 43$.  Somit ist $d = 43$
+Diese Gleichung muss jetzt so umgeformt werden, dass man etwas in der Form
+\[
+	1 = 60 \cdot k + 7 \cdot d
+\]
+bzw
+\[
+	1 = \phi \cdot k + e \cdot d
+\]
+erhält, weil damit die Bedingung $e \cdot d \bmod \phi(N) = 1$ erfüllt ist.
+\begin{align}
+1 & = \uminus 7 + 2 \cdot 60 - 16 \cdot 7 \\
+1 & = 60 \cdot 2 - 16 \cdot 7 - 1 \cdot 7 \\
+1 & = 60 \cdot 2 - 7 \cdot (16 + 1) \\
+1 & = 60 \cdot 2 - 7 \cdot 17 \\
+1 & = 60 \cdot 2 + 7 \cdot (\uminus 17)
+\end{align}
+Wenn $d$ negativ ist muss man noch $d \bmod N$ rechnen. Also $\uminus 17 \bmod
+60 = 43$. Somit ist $d = 43$. Kontrolle:
+\begin{alignat*}{3}
+	e \cdot d & \bmod \phi(N) & \, = 1 \\
+	7 \cdot 43 & \bmod \phi(60) & \, = 1
+\end{alignat*}
