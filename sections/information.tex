@@ -14,10 +14,11 @@ der Informationsgehalt dieses Zeichens sehr hoch.
 
 Der \textbf{Informationsgehalt} $I$ eines Zeichens ist der Zweierlogarithmus der
 Wahrscheinlichkeit $p$ und wird in Bit angegeben.
-
-\begin{displaymath}
+\[
 	I(p) = \uminus \log_2(p)
-\end{displaymath}
+\]
+Damit eine Nachricht im Sinne der Informationstheorie Information ist, muss sie
+\textbf{nicht-redundant} und \textbf{relevant} sein.
 
 
 \subsection{Entscheidungsgehalt}
@@ -31,17 +32,14 @@ lassen sich allerdings nur zwei Zeichen codieren.
 Will man $N$ Zeichen unterscheiden sind $\log_2(N)$ Bit erforderlich. Dieser
 Entscheidungsgehalt kann auch ungerade Werte annehmen und ist eine abstrakte
 Grösse.
-
-\begin{displaymath}
+\[
 	H_0=\log_2(N)
-\end{displaymath}
-
+\]
 Der \textbf{Entscheidungsfluss} $H^*_0$ ist der Entscheidungsgehalt über eine
 bestimmte Zeit $t$, welche zur Übertragung eines Quellzeichens nötig. ist.
-
-\begin{displaymath}
+\[
 	H^*_0=\frac{\log_2(N)}{t}
-\end{displaymath}
+\]
 
 
 \subsection{Entropie}
@@ -58,7 +56,6 @@ Die Entropie einer diskreten, gedächtnislosen Quelle $X$ entspricht dabei dem
 durchschnittlichen Informationsgehalt der Zeichen ($x_1$, $x_2$, $x_3$, \ldots,
 $x_N$) entsprechend ihrer Auftrittswahrscheinlichkeiten ($p_1$, $p_2$, $p_3$,
 \ldots, $p_N$). 
-
 \begin{align*}
 H(X)& =\sum\limits_{i=1}^N p_i \cdot I(x_i) \\
 & =\sum\limits_{i=1}^N p_i \cdot \log_2\left(p(x_i)\right)
