@@ -74,9 +74,9 @@ angefordert.
 
 \subsection{Lineare Blockcodes}
 
-Bei den Linearen Blockcodes werden Nachrichten in feste Blockgrössen $u$
-aufgeteilt. Durch die Codierung wird jedem Block ein eindeutiges Codewort der
-Länge $n$ zugewiesen.
+Bei den Linearen Blockcodes werden Nachrichten $u$ in feste Blockgrössen $k$
+aufgeteilt. Durch die Codierung wird jedem Block ein eindeutiges Codewort $v$
+der Länge $n$ zugewiesen.
 Beispiel:
 \[
 	1010 \rightarrow 0011010
@@ -123,12 +123,17 @@ liefern die Konstruktionsvorschrift:
 		$m$-Tupel mit Hamming-Gewicht $w_H \ge 2$ gebildet.
 \end{itemize}
 
-\textbf{Beispiel} anhand des $(15,11)$-Hamming-Codes:
+Um ein Nachrichtenwort zu codieren, multipliziert man es mit der Generatormatrix
+$\mtx{G}$.
 
-Prüfmatrix $\mtx{H}_{4x15}$:
+Um ein Codewort auf Fehler zu prüfen, multipliziert man es mit der
+Transponierten Prüfmatrix $\mtx{H}^T$. Dies ergibt das \textbf{Syndrom}. Sofern
+alle Komponenten des Syndroms 0 sind, war die Übertragung fehlerfrei.  Wenn $s$
+eine oder mehrere 1 enthält, kann man schauen in welcher Spalte der Prüfmatrix
+$\mtx{H}$ das selbe Muster vorkommt und weiss so die Stelle des Fehlers.
 
-\input{tikz/pruefmatrix}
+Da der Hamming-Code die Hamming-Distanz 3 hat, kann man bis zu 2 Fehler sicher
+erkennen, jedoch nur einen Fehler korrigieren.
 
-Generatormatrix $\mtx{G}_{11x15}$:
-
-\input{tikz/generatormatrix}
+Siehe \autoref{example:hamming} auf Seite~\pageref{example:hamming} für ein
+Anwendungsbeispiel.

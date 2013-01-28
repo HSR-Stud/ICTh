@@ -226,3 +226,53 @@ Wenn $d$ negativ ist muss man noch $d \bmod N$ rechnen. Also $\uminus 17 \bmod
 	e \cdot d & \bmod \phi(N) & \, = 1 \\
 	7 \cdot 43 & \bmod \phi(60) & \, = 1
 \end{alignat*}
+
+
+\subsection{Hamming Code}
+\label{example:hamming}
+
+In diesem Beispiel wird der $(15,11)$-Hamming-Code aufgebaut und damit das
+Nachrichtenwort $01001110100$ codiert und decodiert.
+
+\subsubsection*{1. Generator- und Prüfmatrix erstellen}
+
+Prüfmatrix $\mtx{H}_{4x15}$:
+
+\input{tikz/pruefmatrix}
+
+Generatormatrix $\mtx{G}_{11x15}$:
+
+\input{tikz/generatormatrix}
+
+\subsubsection*{2. Nachrichtenwort codieren}
+
+Bei der Codierung wird das Nachrichtenwort $u$ als Vektor mit der
+Generatormatrix $\mtx{G}$ multipliziert. Dazu wird $u$ für jede Spalte von
+$\mtx{G}$ paarweise multipliziert. Der $\bmod 2$-Wert dieses neuen Vektores
+ergibt die erste Komponente des Vektors $v$.
+\begin{align*}
+	v &= u \odot \mtx{G} \\
+	  &= \begin{pmatrix}0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0\end{pmatrix} \odot \mtx{G} \\
+	  &= \begin{pmatrix}3 \% 2 & 3 \% 2 & 3 \% 2 & 0 \% 2 & 1 \% 2 & 0 \% 2 & 0 \% 2 & 1 \% 2 & 1 \% 2 & 1 \% 2 & 0 \% 2 & 1 \% 2 & 0 \% 2 & 0 \%2\end{pmatrix} \\
+	  &= \begin{pmatrix}1 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0\end{pmatrix}
+\end{align*}
+
+Das Nachrichtenwort kann hier direkt aus dem Codewort ausgelesen werden, weil
+die Codierung systematisch ist.
+
+\subsubsection*{3. Syndrom-Decodierung}
+
+Eine Möglichkeit, die fehlerfreie Übertragung des Nachrichtenwortes zu
+überprüfen, ist mithilfe der Syndrom-Decodierung.  Hier verfährt ähnlich man wie
+bei der Codierung, multipliziert $v$ aber mit der Transponierten Prüfmatrix
+$\mtx{H}^T$.
+\begin{align*}
+	s &= v \odot \mtx{H}^T \\
+	  &= \begin{pmatrix}1 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0\end{pmatrix} \odot \mtx{H}^T \\
+	  &= \begin{pmatrix}4 \% 2 & 4 \% 2 & 4 \% 2 & 4 \% 2\end{pmatrix} \\
+	  &= \begin{pmatrix}0 & 0 & 0 & 0\end{pmatrix}
+\end{align*}
+Sofern alle Komponenten des Syndroms 0 sind, war die Übertragung fehlerfrei.
+Wenn $s$ eine oder mehrere 1 enthält, kann man schauen in welcher Spalte der
+Prüfmatrix $\mtx{H}$ das selbe Muster vorkommt und weiss so die Stelle des
+Fehlers.
