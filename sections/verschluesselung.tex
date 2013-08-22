@@ -24,7 +24,7 @@ dieser Zahl wird $d$ (decode) berechnet, so dass die folgende Gleichung erfüllt
 ist:
 \begin{equation}
 	\label{eqn:rsa:d}
-	e \cdot d \bmod \phi(N) = 1
+	(e \cdot d) \bmod \phi(N) = 1
 \end{equation}
 $\phi$ bezeichnet dabei die Eulersche Phi-Funktion. Sie gibt für jede natürliche
 Zahl $n$ an, wie viele positive ganze Zahlen es gibt, welche teilerfremd zu $n$
@@ -42,7 +42,7 @@ werden ab nun nicht mehr benötigt.
 
 \subsubsection*{Ver- und Entschlüsselung}
 
-Eine Nachricht $N$ kann mit dem Public Key folgendermassen verschlüsselt werden:
+Eine Nachricht $M$ kann mit dem Public Key folgendermassen verschlüsselt werden:
 \begin{equation}
 	M^e \bmod N = C
 \end{equation}
